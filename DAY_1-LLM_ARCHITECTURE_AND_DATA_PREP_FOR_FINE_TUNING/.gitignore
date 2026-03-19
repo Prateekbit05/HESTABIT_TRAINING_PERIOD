@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+llama.cpp/
+gguf_models/
+htmlcov/
+notebooks/
+data/versions/
+data/customers-100000.csv
+data/people-100000.csv
+generation_history.json
+SCREENSHOTS/
+*.egg-info/
+.pytest_cache/
