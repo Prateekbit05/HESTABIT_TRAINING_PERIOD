@@ -1,0 +1,23 @@
+2026-02-04T11:38:40.833Z [error]: logger.error is not a function
+2026-02-04T11:38:48.319Z [error]: logger.error is not a function
+2026-02-04T11:40:25.642Z [error]: logger.error is not a function
+2026-02-04T11:41:01.868Z [ERROR]: logger.error is not a function
+2026-02-04T11:41:10.477Z [ERROR]: logger.error is not a function
+2026-02-05 12:33:24 [info] [req:-] ✅ MongoDB connected
+2026-02-05 12:33:24 [info] [req:-] ✅ Redis connected
+2026-02-05 12:33:24 [info] [req:-] ✔ Security middlewares applied
+2026-02-05 12:33:24 [info] [req:-] ✔ Body parsers loaded
+2026-02-05 12:33:24 [info] [req:-] ✔ Request tracing enabled
+2026-02-05 12:33:24 [info] [req:-] ✔ HTTP logger loaded
+2026-02-05 12:33:24 [info] [req:-] ✔ Health check at /health
+2026-02-05 12:33:24 [info] [req:-] ✔ API routes mounted at /api
+2026-02-05 12:33:24 [info] [req:-] 
+2026-02-05 12:33:24 [info] [req:-] ================================================
+2026-02-05 12:33:24 [info] [req:-] ✔ Server started successfully
+2026-02-05 12:33:24 [info] [req:-] ================================================
+2026-02-05 12:33:24 [info] [req:-] 🌐 http://localhost:3000
+2026-02-05 12:33:24 [info] [req:-] 📍 Health: http://localhost:3000/health
+2026-02-05 12:33:24 [info] [req:-] 📍 API: http://localhost:3000/api
+2026-02-05 12:33:24 [info] [req:-] 🌍 Environment: local
+2026-02-05 12:33:24 [info] [req:-] ================================================
+2026-02-05 12:33:24 [info] [req:-] 
