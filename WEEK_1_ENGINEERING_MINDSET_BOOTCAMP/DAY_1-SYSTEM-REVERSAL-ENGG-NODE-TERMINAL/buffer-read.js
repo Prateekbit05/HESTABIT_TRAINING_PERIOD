@@ -13,3 +13,4 @@ fs.readFile("largefile.bin", (err) => {
   console.log("Time (ms):", Number(endTime - startTime) / 1e6);
   console.log("Memory Used (MB):", (endMemory - startMemory) / 1024 / 1024);
 });
+
