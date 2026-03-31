@@ -18,3 +18,4 @@ if ! jq empty config.json >/dev/null 2>&1; then
 fi
 
 echo "[$TIMESTAMP] Validation passed ✅" >> "$LOG_FILE"
+

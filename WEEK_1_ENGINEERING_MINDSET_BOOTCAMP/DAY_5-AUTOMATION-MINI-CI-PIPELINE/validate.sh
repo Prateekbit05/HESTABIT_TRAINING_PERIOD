@@ -23,3 +23,4 @@ jq . config.json >/dev/null 2>&1 || {
 }
 
 echo "$(date '+%Y-%m-%d %H:%M:%S') Validation successful" >> "$LOG_FILE"
+
