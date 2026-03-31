@@ -7,3 +7,4 @@ git bisect bad ce87bc28fb9f5ca47e9f6d4e57e03df67601a7f2
 git bisect good ce87bc28fb9f5ca47e9f6d4e57e03df67601a7f2
 # bad: [ce87bc28fb9f5ca47e9f6d4e57e03df67601a7f2] chore: ignore generated output files
 git bisect bad ce87bc28fb9f5ca47e9f6d4e57e03df67601a7f2
+
