@@ -218,6 +218,22 @@ POST /ask-sql    → Natural language to SQL query
 
 ---
 
+## 📸 Screenshots
+
+### Day 1 — Local RAG System Dashboard
+![RAG Dashboard](SCREENSHOTS/RAG_DASHBOARD.png)
+
+### Day 2 — Advanced Retrieval Dashboard
+![Advanced Retrieval Dashboard](SCREENSHOTS/ADVANCED_RETRIEVAL_DASHBOARD.png)
+
+### Day 3 — Multimodal RAG
+![Multimodal RAG](SCREENSHOTS/multimodal_RAG.png)
+
+### Day 4 — SQL Question Answering System
+![SQL Question Answering System](SCREENSHOTS/SQL%20Question%20Answering%20System.png)
+
+---
+
 ## 🧠 Model Stack
 
 ### Path A — Open-Source Local (Fully Offline)
