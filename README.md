@@ -1,8 +1,4 @@
-# 🚀 Hestabit Internship — Developer Training 2025–26
-
-> **Intern:** Prateek | **Batch:** Hestabit 3rd Batch
-> **Duration:** 9 Weeks | **Stack:** Full-Stack + DevOps + AI/ML Engineering
-
+# 🚀 HESTABIT TRAINING TASKS -> [WEEK-1-->WEEK-9]
 ---
 
 ## 📋 Table of Contents
