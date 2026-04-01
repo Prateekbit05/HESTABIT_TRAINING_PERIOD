@@ -410,5 +410,3 @@ HESTABIT_TRAINING_PERIOD/
 ```
 
 ---
-
-> Built with discipline, curiosity, and an engineering mindset. — Prateek, Hestabit 3rd Batch 2025–26
