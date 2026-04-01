@@ -15,7 +15,7 @@
   - [Week 3 — Advanced Frontend (Next.js + TailwindCSS)](#week-3--advanced-frontend-nextjs--tailwindcss)
   - [Week 4 — Advanced Backend Engineering](#week-4--advanced-backend-engineering)
   - [Week 5 — Server Side Foundations with Docker & DevOps](#week-5--server-side-foundations-with-docker--devops)
-  - [Week 6 — (Reserved)](#week-6--reserved)
+  - [Week 6 — Machine Learning Engineering](#week-6--machine-learning-engineering)
   - [Week 7 — GenAI & Multimodal RAG Engineering](#week-7--genai--multimodal-rag-engineering)
   - [Week 8 — LLM Fine-Tuning, Quantisation & Optimised Inference](#week-8--llm-fine-tuning-quantisation--optimised-inference)
   - [Week 9 — Agentic AI & Multi-Agent System Design](#week-9--agentic-ai--multi-agent-system-design)
@@ -43,6 +43,9 @@ Each week has a dedicated folder with day-wise deliverables, screenshots, and do
 ![NGINX](https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-FF6600?style=for-the-badge&logo=xgboost&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
 
 ---
 
@@ -158,9 +161,70 @@ Each week has a dedicated folder with day-wise deliverables, screenshots, and do
 
 ---
 
-### Week 6 — (Reserved)
+### Week 6 — Machine Learning Engineering
 
-> Content for Week 6 to be added.
+> **Objective:** Build a production-grade ML system end-to-end — from raw data ingestion and feature engineering, through multi-model training and hyperparameter tuning, to a containerised FastAPI deployment with real-time drift monitoring.
+
+**Dataset:** NF-UQ-NIDS-v2 (Network Intrusion Detection) — 100,000 rows, 46 features, 20 attack classes, 32,986:1 class imbalance ratio.
+
+| Day | Topic | Key Deliverable |
+|-----|-------|----------------|
+| Day 1 | Data Pipeline + EDA + Project Architecture | `data_pipeline.py`, `EDA.ipynb`, `DATA-REPORT.md` |
+| Day 2 | Feature Engineering + Feature Selection | `build_features.py`, `feature_selector.py`, `FEATURE-ENGINEERING-DOC.md` |
+| Day 3 | Model Building + Advanced Training Pipeline | `train.py`, `best_model.pkl`, `MODEL-COMPARISON.md` |
+| Day 4 | Hyperparameter Tuning + Explainability + Error Analysis | `tuning.py`, `shap_analysis.py`, `MODEL-INTERPRETATION.md` |
+| Day 5 | Model Deployment + Monitoring + MLOps Capstone | `api.py`, `drift_checker.py`, `Dockerfile`, `DEPLOYMENT-NOTES.md` |
+
+**Feature Engineering Pipeline:**
+
+| Stage | Features | Action |
+|-------|----------|--------|
+| Input (Day 1) | 42 | Cleaned numerical features |
+| After Engineering | 144 | +102 new features created |
+| After Variance + Correlation Filter | — | Removed near-zero variance + corr > 0.95 |
+| **Final Output** | **50** | Ensemble voting selection (6 methods) |
+
+**Model Comparison (CV F1):**
+
+| Model | CV Accuracy | CV F1 | Train Time |
+|-------|-------------|-------|------------|
+| Logistic Regression | 0.0073 | 0.0105 | 158.2s |
+| Random Forest | 0.1420 | 0.1784 | 17.4s |
+| Neural Network | 0.3285 | 0.1779 | 51.1s |
+| XGBoost | 0.3190 | 0.2262 | 81.5s |
+| **LightGBM ✅** | **0.3172** | **0.2343** | 94.7s |
+
+**API Endpoints (Day 5 Capstone):**
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/health` | Health check + uptime |
+| `GET` | `/metrics` | Request counts, P95 latency, drift warnings |
+| `GET` | `/model/info` | Model version, feature count, class map |
+| `POST` | `/predict` | Single prediction with live drift check |
+| `POST` | `/predict/batch` | Batch predictions |
+| `POST` | `/model/reload` | Hot-reload model from disk |
+
+**Drift Monitoring Coverage:**
+
+| Type | Method | Threshold |
+|------|--------|-----------|
+| Covariate drift | PSI per feature | PSI > 0.2 |
+| Distribution shift | KS test | p < 0.05 |
+| Concept drift | Chi-square on labels | p < 0.05 |
+| Per-request drift | Z-score (live) | z > threshold |
+
+**Skills Gained:**
+- Professional ML pipeline architecture — modular, leakage-free, versioned
+- EDA — correlation matrix, class balance, missing value heatmaps, outlier detection (Z-score + IQR)
+- Feature engineering — 8 transformer types (log, sqrt, power, interaction, ratio, aggregation, binning, statistical)
+- Ensemble feature selection — 6-method voting (Correlation, MI, RFE, Tree importance, Variance, Chi-square)
+- Multi-model training with 5-fold cross-validation and sklearn `Pipeline` to prevent leakage
+- Bayesian hyperparameter optimization with Optuna TPE sampler (30 trials)
+- SHAP `TreeExplainer` for exact Shapley values and feature importance ranking
+- FastAPI deployment — UUID request tracking, Pydantic validation, append-only prediction logs, P95 latency tracking
+- Dual-layer drift detection — real-time z-score per request + batch PSI/KS in drift checker
+- Multi-stage Docker builds for production-ready containerised ML service
 
 ---
 
@@ -282,7 +346,7 @@ Day 5 → NEXUS AI (9-Agent Autonomous System — Capstone)
 | Week 3 | Advanced Frontend (Next.js + TailwindCSS) | ✅ Complete |
 | Week 4 | Advanced Backend Engineering | ✅ Complete |
 | Week 5 | Server Side Foundations with Docker & DevOps | ✅ Complete |
-| Week 6 | (Reserved) | — |
+| Week 6 | Machine Learning Engineering | ✅ Complete |
 | Week 7 | GenAI & Multimodal RAG Engineering | ✅ Complete |
 | Week 8 | LLM Fine-Tuning, Quantisation & Inference | ✅ Complete |
 | Week 9 | Agentic AI & Multi-Agent System Design | ✅ Complete |
@@ -323,6 +387,12 @@ HESTABIT_TRAINING_PERIOD/
 │   ├── DAY_3-NGINX_REVERSE_PROXY_AND_LOAD_BALANCING/
 │   ├── DAY_4-SSL_SELF_SIGNED_MKCERT_HTTPS/
 │   └── DAY_5-CI_STYLE_DEPLOYMENT_AUTOMATION_CAPSTONE/
+├── WEEK_6_MACHINE_LEARNING_ENGINEERING/
+│   ├── DAY-1-DATA-PIPELINE/
+│   ├── DAY-2-FEATURE-ENGINEERING/
+│   ├── DAY-3-MODEL-BUILDING/
+│   ├── DAY-4-HYPERPARAMETER-TUNING/
+│   └── DAY-5-DEPLOYMENT/
 ├── WEEK_7_GENAI_AND_MULTIMODAL_RAG_ENGINEERING/
 │   ├── DAY_1-LOCAL_RAG_SYSTEM/
 │   ├── DAY_2-ADVANCED_RETRIEVAL_AND_CONTEXT_ENGINEERING/
