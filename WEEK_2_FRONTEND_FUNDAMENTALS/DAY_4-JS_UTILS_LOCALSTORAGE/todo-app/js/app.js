@@ -122,3 +122,5 @@ const toggleComplete = (index) => {
 // INITIAL RENDER
 // ================================
 renderTodos()
+
+// Todo app: CRUD operations with LocalStorage persistence debounce throttle and error handling
