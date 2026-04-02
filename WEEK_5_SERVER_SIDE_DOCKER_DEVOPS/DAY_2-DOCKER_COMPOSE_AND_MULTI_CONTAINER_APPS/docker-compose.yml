@@ -10,7 +10,7 @@ services:
       timeout: 5s
       retries: 5
   backend:
-    image: node:20
+    image: node:20-alpine
     container_name: day2-backend
     working_dir: /app
     volumes:
@@ -23,7 +23,7 @@ services:
     environment:
       - MONGO_URL=mongodb://mongo:27017/test
   frontend:
-    image: node:20
+    image: node:20-alpine
     container_name: day2-frontend
     working_dir: /app
     volumes:
