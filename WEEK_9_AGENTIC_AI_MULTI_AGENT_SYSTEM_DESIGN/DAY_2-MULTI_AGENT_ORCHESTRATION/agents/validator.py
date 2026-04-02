@@ -307,3 +307,4 @@ class ValidatorAgent(BaseAgent):
 
     def __repr__(self) -> str:
         return f"ValidatorAgent(name='{self.name}')"
+# Validator agent: reviews final output from reflection agent checking for errors and quality assurance
