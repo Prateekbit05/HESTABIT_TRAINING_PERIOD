@@ -123,3 +123,5 @@ console.log('📧 Email Worker Started Successfully!');
 console.log(`📧 Listening for jobs on queue: ${QUEUE_NAME}`);
 
 module.exports = emailWorker;
+
+// Email job: BullMQ job definition with retry backoff for async email notifications
