@@ -85,3 +85,4 @@ export function CardFooter({ children, className = '' }) {
     </div>
   );
 }
+// Card: reusable TailwindCSS card component with flexible content slots and shadow variants
