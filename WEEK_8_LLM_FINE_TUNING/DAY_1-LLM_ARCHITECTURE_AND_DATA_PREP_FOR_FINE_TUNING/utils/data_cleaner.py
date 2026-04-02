@@ -1,13 +1,9 @@
 import pandas as pd
 import json
 import jsonlines
-import re
 import secrets
-import hashlib
 import random
-from typing import List, Dict
 from tqdm import tqdm
-import numpy as np
 import os
 
 
@@ -36,7 +32,7 @@ class InstructionDatasetBuilder:
 
         self.instructions = []
 
-    # ========== QA TEMPLATES ==========
+    # ========== QA ==========
     def generate_qa_samples(self, n_samples: int = 500):
         print("\n🔹 Generating QA samples...")
         samples = []
@@ -58,19 +54,19 @@ class InstructionDatasetBuilder:
             row = self.customers.sample(1).iloc[0] if secrets.randbelow(2) else self.people.sample(1).iloc[0]
 
             cols = row.index.tolist()
-            name_col = next((col for col in cols if 'name' in col.lower()), cols[0])
+            name_col = next((c for c in cols if 'name' in c.lower()), cols[0])
 
             qa_type = secrets.choice(['email', 'phone', 'location', 'company', 'age', 'job'])
             starter, verb = secrets.choice(question_starters)
 
             try:
-                if qa_type == 'email' and any('email' in col.lower() for col in cols):
-                    email_col = next(col for col in cols if 'email' in col.lower())
+                if qa_type == 'email' and any('email' in c.lower() for c in cols):
+                    email_col = next(c for c in cols if 'email' in c.lower())
                     q = f"{starter} the email for {row[name_col]}?"
                     a = f"The email {verb} {row[email_col]}."
 
-                elif qa_type == 'phone' and any('phone' in col.lower() for col in cols):
-                    phone_col = next(col for col in cols if 'phone' in col.lower())
+                elif qa_type == 'phone' and any('phone' in c.lower() for c in cols):
+                    phone_col = next(c for c in cols if 'phone' in c.lower())
                     q = f"{starter} {row[name_col]}'s phone number?"
                     a = f"The phone number {verb} {row[phone_col]}."
 
@@ -84,18 +80,18 @@ class InstructionDatasetBuilder:
                     else:
                         continue
 
-                elif qa_type == 'company' and any('company' in col.lower() for col in cols):
-                    company_col = next(col for col in cols if 'company' in col.lower())
+                elif qa_type == 'company' and any('company' in c.lower() for c in cols):
+                    company_col = next(c for c in cols if 'company' in c.lower())
                     q = f"{starter} which organization {row[name_col]} represents?"
                     a = f"{row[name_col]} represents {row[company_col]}."
 
-                elif qa_type == 'age' and any('age' in col.lower() for col in cols):
-                    age_col = next(col for col in cols if 'age' in col.lower())
+                elif qa_type == 'age' and any('age' in c.lower() for c in cols):
+                    age_col = next(c for c in cols if 'age' in c.lower())
                     q = f"{starter} the age of {row[name_col]}?"
                     a = f"{row[name_col]} {verb} {row[age_col]} years old."
 
-                elif qa_type == 'job' and any('job' in col.lower() or 'title' in col.lower() for col in cols):
-                    job_col = next(col for col in cols if 'job' in col.lower() or 'title' in col.lower())
+                elif qa_type == 'job' and any('job' in c.lower() or 'title' in c.lower() for c in cols):
+                    job_col = next(c for c in cols if 'job' in c.lower() or 'title' in c.lower())
                     q = f"{starter} {row[name_col]}'s role?"
                     a = f"Their role {verb} {row[job_col]}."
 
@@ -118,37 +114,11 @@ class InstructionDatasetBuilder:
         for _ in tqdm(range(n_samples)):
             row = self.customers.sample(1).iloc[0] if secrets.randbelow(2) else self.people.sample(1).iloc[0]
             cols = row.index.tolist()
-            name_col = next((col for col in cols if 'name' in col.lower()), cols[0])
-
-            reasoning_type = secrets.choice([
-                "age_comparison",
-                "profile_analysis",
-                "data_inference",
-                "demographic_insight",
-                "business_context",
-                "location_analysis"
-            ])
+            name_col = next((c for c in cols if 'name' in c.lower()), cols[0])
 
             try:
-                if reasoning_type == "age_comparison" and any('age' in c.lower() for c in cols):
-                    row2 = self.people.sample(1).iloc[0]
-                    age_col = next(c for c in cols if 'age' in c.lower())
-
-                    age1 = int(row.get(age_col, 30))
-                    age2 = int(row2.get(age_col, 30))
-
-                    instruction = f"Compare the ages of {row[name_col]} and {row2.get(name_col, 'another person')}."
-
-                    if age1 > age2:
-                        output = f"{row[name_col]} is older by {age1 - age2} years."
-                    elif age2 > age1:
-                        output = f"{row2.get(name_col, 'The other person')} is older by {age2 - age1} years."
-                    else:
-                        output = "Both are of the same age."
-
-                else:
-                    instruction = f"Provide insights about {row[name_col]}."
-                    output = f"{row[name_col]} appears to be a professional suitable for business engagement."
+                instruction = f"Provide insights about {row[name_col]}."
+                output = f"{row[name_col]} appears to be a professional suitable for business engagement."
 
                 samples.append({"instruction": instruction, "input": "", "output": output})
 
@@ -166,11 +136,10 @@ class InstructionDatasetBuilder:
         for _ in tqdm(range(n_samples)):
             row = self.customers.sample(1).iloc[0] if secrets.randbelow(2) else self.people.sample(1).iloc[0]
             cols = row.index.tolist()
-            name_col = next((col for col in cols if 'name' in col.lower()), cols[0])
+            name_col = next((c for c in cols if 'name' in c.lower()), cols[0])
 
             text = f"{row[name_col]} is a professional."
             instruction = "Extract the name from the text."
-
             output = json.dumps({"name": row[name_col]}, indent=2)
 
             samples.append({
@@ -206,8 +175,7 @@ class InstructionDatasetBuilder:
         print("\n💾 Saving datasets...")
 
         # Shuffle dataset before splitting
-        # Using random is fine here since this is not security-sensitive
-        # Set seed for reproducibility
+        # Using random is safe here (non-cryptographic use like ML dataset shuffling)
         random.seed(42)
         random.shuffle(self.instructions)
 
