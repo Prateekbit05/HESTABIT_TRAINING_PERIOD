@@ -11,3 +11,5 @@ class ProductRepository {
 }
 
 export default new ProductRepository();
+
+// Product repository: CRUD operations with aggregation and index-optimized queries
