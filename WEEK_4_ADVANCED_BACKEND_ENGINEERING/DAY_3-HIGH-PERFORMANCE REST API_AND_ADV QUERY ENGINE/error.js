@@ -50,3 +50,4 @@ const asyncHandler = (fn) => (req, res, next) => {
 };
 
 module.exports = { errorHandler, asyncHandler };
+// Error middleware: centralized typed error handling with error codes and timestamps
