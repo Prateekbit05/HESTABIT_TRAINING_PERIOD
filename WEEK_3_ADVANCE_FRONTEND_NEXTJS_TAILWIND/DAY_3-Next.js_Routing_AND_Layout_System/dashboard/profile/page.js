@@ -118,3 +118,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+// Profile page: Next.js dashboard profile page with static content and nested routing
