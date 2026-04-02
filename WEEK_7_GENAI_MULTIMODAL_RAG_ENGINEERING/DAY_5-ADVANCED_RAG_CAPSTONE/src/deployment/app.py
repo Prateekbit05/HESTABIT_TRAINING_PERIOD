@@ -422,3 +422,5 @@ if __name__ == "__main__":
         reload=config['api']['reload'],
         log_level="info"
     )
+
+# Capstone API: FastAPI app exposing /ask /ask-image /ask-sql endpoints with memory and evaluation
