@@ -9,7 +9,7 @@ import logging
 import yaml
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from typing import Annotated, Optional
 from contextlib import asynccontextmanager
 
 # Fix imports
@@ -82,9 +82,9 @@ def save_chat_log(log_entry: dict):
                 logs = json.load(f)
         else:
             logs = {"interactions": []}
-        
+
         logs["interactions"].append(log_entry)
-        
+
         with open(CHAT_LOGS_PATH, 'w') as f:
             json.dump(logs, f, indent=2)
     except Exception as e:
@@ -96,25 +96,25 @@ def save_chat_log(log_entry: dict):
 async def lifespan(app: FastAPI):
     """Lifespan event handler for startup and shutdown"""
     global pipeline, memory_store
-    
+
     # Startup
     logger.info("🚀 Starting Advanced RAG API...")
-    
+
     try:
         from src.deployment.unified_pipeline import UnifiedRAGPipeline
         from src.memory.memory_store import MemoryStore
-        
+
         pipeline = UnifiedRAGPipeline(str(CONFIG_PATH))
         memory_store = MemoryStore(str(CONFIG_PATH))
-        
+
         logger.info("✅ All components initialized")
     except Exception as e:
         logger.error(f"❌ Initialization error: {e}")
         import traceback
         traceback.print_exc()
-    
+
     yield
-    
+
     # Shutdown
     logger.info("👋 Shutting down Advanced RAG API...")
 
@@ -175,12 +175,12 @@ async def health_check():
 @app.post("/ask")
 async def ask(request: AskRequest):
     """General question answering endpoint"""
-    
+
     logger.info(f"📝 /ask - Session: {request.session_id}, Q: {request.question}")
-    
+
     if pipeline is None:
         raise HTTPException(status_code=503, detail="Pipeline not initialized")
-    
+
     try:
         result = pipeline.process_query(
             query=request.question,
@@ -189,7 +189,7 @@ async def ask(request: AskRequest):
             use_memory=request.use_memory,
             use_refinement=request.use_refinement
         )
-        
+
         response = {
             "success": result.get('success', True),
             "session_id": request.session_id,
@@ -209,7 +209,7 @@ async def ask(request: AskRequest):
                 "row_count": result.get('row_count')
             }
         }
-        
+
         save_chat_log({
             "endpoint": "/ask",
             "session_id": request.session_id,
@@ -218,11 +218,11 @@ async def ask(request: AskRequest):
             "answer": result['answer'],
             "evaluation": response['evaluation']
         })
-        
+
         logger.info(f"✅ /ask - Quality: {response['evaluation']['quality']}")
-        
+
         return JSONResponse(content=response)
-    
+
     except Exception as e:
         logger.error(f"❌ /ask error: {e}")
         import traceback
@@ -233,12 +233,12 @@ async def ask(request: AskRequest):
 @app.post("/ask-sql")
 async def ask_sql(request: AskSQLRequest):
     """SQL question answering endpoint"""
-    
+
     logger.info(f"🗄️  /ask-sql - Session: {request.session_id}, Q: {request.question}")
-    
+
     if pipeline is None:
         raise HTTPException(status_code=503, detail="Pipeline not initialized")
-    
+
     try:
         result = pipeline.process_query(
             query=request.question,
@@ -247,7 +247,7 @@ async def ask_sql(request: AskSQLRequest):
             use_memory=request.use_memory,
             use_refinement=False
         )
-        
+
         # Convert data to dict if DataFrame
         data_dict = None
         if result.get('data') is not None:
@@ -255,7 +255,7 @@ async def ask_sql(request: AskSQLRequest):
                 data_dict = result['data'].to_dict('records')
             except:
                 data_dict = str(result.get('data'))
-        
+
         response = {
             "success": result.get('success', True),
             "session_id": request.session_id,
@@ -270,7 +270,7 @@ async def ask_sql(request: AskSQLRequest):
                 "quality": result['evaluation']['overall_quality']
             }
         }
-        
+
         save_chat_log({
             "endpoint": "/ask-sql",
             "session_id": request.session_id,
@@ -280,11 +280,11 @@ async def ask_sql(request: AskSQLRequest):
             "answer": result['answer'],
             "row_count": result.get('row_count', 0)
         })
-        
+
         logger.info(f"✅ /ask-sql - Rows: {response['row_count']}")
-        
+
         return JSONResponse(content=response)
-    
+
     except Exception as e:
         logger.error(f"❌ /ask-sql error: {e}")
         import traceback
@@ -294,25 +294,25 @@ async def ask_sql(request: AskSQLRequest):
 
 @app.post("/ask-image")
 async def ask_image(
-    file: UploadFile = File(...),
-    question: str = Form(...),
-    session_id: str = Form("default")
+    file: Annotated[UploadFile, File()],
+    question: Annotated[str, Form()],
+    session_id: Annotated[str, Form()] = "default"
 ):
     """Image analysis endpoint"""
-    
+
     logger.info(f"🖼️  /ask-image - Session: {session_id}, Q: {question}")
-    
+
     if pipeline is None:
         raise HTTPException(status_code=503, detail="Pipeline not initialized")
-    
+
     try:
         upload_dir = DATA_DIR / 'uploads'
         file_path = upload_dir / f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{file.filename}"
-        
+
         with open(file_path, 'wb') as f:
             content = await file.read()
             f.write(content)
-        
+
         result = pipeline.process_query(
             query=question,
             session_id=session_id,
@@ -321,7 +321,7 @@ async def ask_image(
             use_memory=True,
             use_refinement=False
         )
-        
+
         response = {
             "success": result.get('success', True),
             "session_id": session_id,
@@ -335,7 +335,7 @@ async def ask_image(
                 "quality": result['evaluation']['overall_quality']
             }
         }
-        
+
         save_chat_log({
             "endpoint": "/ask-image",
             "session_id": session_id,
@@ -344,9 +344,9 @@ async def ask_image(
             "answer": result['answer'],
             "image": file.filename
         })
-        
+
         return JSONResponse(content=response)
-    
+
     except Exception as e:
         logger.error(f"❌ /ask-image error: {e}")
         import traceback
@@ -357,14 +357,14 @@ async def ask_image(
 @app.get("/memory/{session_id}")
 async def get_memory(session_id: str, limit: Optional[int] = 10):
     """Get conversation history"""
-    
+
     if memory_store is None:
         raise HTTPException(status_code=503, detail="Memory store not initialized")
-    
+
     try:
         history = memory_store.get_history(session_id, limit=limit)
         stats = memory_store.get_session_stats(session_id)
-        
+
         return {"session_id": session_id, "history": history, "stats": stats}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -373,10 +373,10 @@ async def get_memory(session_id: str, limit: Optional[int] = 10):
 @app.delete("/memory/{session_id}/clear")
 async def clear_memory(session_id: str):
     """Clear conversation history"""
-    
+
     if memory_store is None:
         raise HTTPException(status_code=503, detail="Memory store not initialized")
-    
+
     try:
         memory_store.clear_session(session_id)
         return {"success": True, "session_id": session_id, "message": "Memory cleared"}
@@ -387,16 +387,16 @@ async def clear_memory(session_id: str):
 @app.get("/stats")
 async def get_stats():
     """Get system statistics"""
-    
+
     try:
         sessions = memory_store.get_all_sessions() if memory_store else []
-        
+
         total_interactions = 0
         if CHAT_LOGS_PATH.exists():
             with open(CHAT_LOGS_PATH) as f:
                 logs = json.load(f)
                 total_interactions = len(logs.get('interactions', []))
-        
+
         return {
             "sessions": {"total": len(sessions), "session_ids": sessions[:10]},
             "interactions": {"total": total_interactions}
@@ -408,13 +408,13 @@ async def get_stats():
 # Main
 if __name__ == "__main__":
     print(f"\n{'='*80}")
-    print(f"🚀 ADVANCED RAG CAPSTONE API")
+    print(f"ADVANCED RAG CAPSTONE API")
     print(f"{'='*80}")
-    print(f"📂 Working directory: {ROOT_DIR}")
-    print(f"📄 Config: {CONFIG_PATH}")
-    print(f"🌐 Port: {API_PORT}")
+    print(f"Working directory: {ROOT_DIR}")
+    print(f"Config: {CONFIG_PATH}")
+    print(f"Port: {API_PORT}")
     print(f"{'='*80}\n")
-    
+
     uvicorn.run(
         "app:app",
         host=API_HOST,
