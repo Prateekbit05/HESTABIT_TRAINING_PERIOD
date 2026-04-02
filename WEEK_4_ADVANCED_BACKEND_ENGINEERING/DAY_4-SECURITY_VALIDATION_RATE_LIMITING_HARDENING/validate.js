@@ -82,3 +82,4 @@ const validate = (schema) => {
 };
 
 module.exports = { validate, userSchemas, productSchemas };
+// Validate middleware: JOI/Zod schema validation for User and Product request payloads
