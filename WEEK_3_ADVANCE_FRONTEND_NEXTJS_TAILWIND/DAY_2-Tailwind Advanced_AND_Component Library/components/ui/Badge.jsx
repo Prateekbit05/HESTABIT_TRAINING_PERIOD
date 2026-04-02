@@ -50,3 +50,4 @@ function getDotColor(variant) {
   };
   return dotColors[variant] || dotColors.default;
 }
+// Badge: reusable TailwindCSS badge component with color variants for status and label display
