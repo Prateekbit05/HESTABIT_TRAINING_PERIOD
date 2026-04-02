@@ -175,3 +175,4 @@ class WorkerAgent(BaseAgent):
             f"role='{self.worker_role}', "
             f"name='{self.name}')"
         )
+# Worker agent: executes assigned subtasks in parallel receiving instructions from orchestrator planner
