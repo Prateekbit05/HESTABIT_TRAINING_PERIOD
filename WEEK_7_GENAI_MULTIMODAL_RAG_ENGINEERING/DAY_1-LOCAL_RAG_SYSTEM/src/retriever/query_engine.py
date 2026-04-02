@@ -54,3 +54,4 @@ class QueryEngine:
             )
 
         return "\n---\n".join(context_parts)
+# Query engine: semantic retrieval over FAISS index with top-k ranking and metadata filtering
