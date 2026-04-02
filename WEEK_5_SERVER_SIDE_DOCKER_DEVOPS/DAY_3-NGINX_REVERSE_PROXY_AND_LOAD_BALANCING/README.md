@@ -175,3 +175,4 @@ NGINX :80  (reverse proxy)
 - **Round-robin (default):** NGINX alternates requests across all upstream servers equally — no config needed beyond listing them
 - **Container names as hostnames:** In Docker networks, `backend-1` and `backend-2` resolve as hostnames automatically
 - **Zero-downtime reload:** `nginx -s reload` applies config changes without dropping existing connections
+
