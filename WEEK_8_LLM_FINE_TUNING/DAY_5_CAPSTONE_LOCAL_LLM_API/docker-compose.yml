@@ -23,3 +23,4 @@ services:
               count: all
               capabilities: [gpu]
     restart: unless-stopped
+# docker-compose: local LLM API stack with FastAPI inference server and model volume mounting
