@@ -598,3 +598,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+# Inference tester: benchmarks base fine-tuned and quantized models measuring tokens/sec VRAM and latency
