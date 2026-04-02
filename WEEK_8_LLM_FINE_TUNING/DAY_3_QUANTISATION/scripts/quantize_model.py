@@ -408,3 +408,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+# Quantize model: converts fine-tuned LLM to INT8 INT4 and GGUF formats using bitsandbytes and llama.cpp
