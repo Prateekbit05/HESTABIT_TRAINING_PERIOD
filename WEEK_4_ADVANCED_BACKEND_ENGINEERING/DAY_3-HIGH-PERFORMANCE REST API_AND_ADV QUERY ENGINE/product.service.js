@@ -7,3 +7,5 @@ class ProductService {
 }
 
 export default new ProductService();
+
+// Product service: business logic layer bridging controller and repository
