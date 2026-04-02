@@ -133,3 +133,4 @@ scaling:
 - **RFE pre-filtered to top 100** by variance — keeps RFE computation tractable on 144 features
 - **Scaling deferred to Day 3** — each model type (tree vs linear) applies its preferred scaler
 - **Target encoded before selection, decoded before saving** — final CSV contains original class labels
+
