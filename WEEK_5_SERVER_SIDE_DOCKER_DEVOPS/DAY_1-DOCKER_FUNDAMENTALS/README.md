@@ -152,3 +152,4 @@ docker stop my-app && docker rm my-app
 - **`docker exec -it`:** Lets you enter a running container like SSH — essential for debugging
 - **Linux inside containers:** Containers share the host kernel but have isolated filesystems, processes and users
 - **Volumes:** Mount host directories into containers so data persists after container stops
+
