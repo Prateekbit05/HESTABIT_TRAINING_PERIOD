@@ -128,3 +128,4 @@ git add DAY_5-Capstone_Mini_Project/screenshots
 git commit -m "Docs: Add complete Day 5 capstone README with screenshots"
 git push origin main
 ```
+
