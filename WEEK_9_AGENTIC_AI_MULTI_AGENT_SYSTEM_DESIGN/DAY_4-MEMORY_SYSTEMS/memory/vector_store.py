@@ -291,3 +291,4 @@ if __name__ == "__main__":
     print(f"    Vectors   : {s['total_vectors']}")
     print(f"    Categories: {s['categories']}")
     print("\n  ✓ Check logs/vector_store.log for detailed logs")
+# Vector store: FAISS-based long-term semantic memory for similarity-based context recall and prompt injection
