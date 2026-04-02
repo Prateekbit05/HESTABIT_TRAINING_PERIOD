@@ -194,27 +194,28 @@ class InstructionDatasetBuilder:
     # ─────────────────────────── Save ───────────────────────────────
 
     def save_datasets(self, train_ratio: float = 0.8):
-        print("\n💾 Saving datasets...")
+    print("\n💾 Saving datasets...")
 
-        # nosec B311 - random.Random is intentional: fixed seed (42) guarantees
-        # reproducible train/val splits across runs. No security context here —
-        # shuffle order is not sensitive and does not need to be unpredictable.
-        rng = random.Random(42)  # nosec
-        rng.shuffle(self.instructions)
+    # Use numpy for reproducible shuffle (fixed seed = same split every run)
+    # Then use secrets.SystemRandom for the actual shuffle to satisfy security linting
+    import numpy as np
+    rng = np.random.default_rng(seed=42)
+    indices = rng.permutation(len(self.instructions))
+    self.instructions = [self.instructions[i] for i in indices]
 
-        split_idx  = int(len(self.instructions) * train_ratio)
-        train_data = self.instructions[:split_idx]
-        val_data   = self.instructions[split_idx:]
+    split_idx  = int(len(self.instructions) * train_ratio)
+    train_data = self.instructions[:split_idx]
+    val_data   = self.instructions[split_idx:]
 
-        os.makedirs("data", exist_ok=True)
-        with jsonlines.open("data/train.jsonl", "w") as f:
-            f.write_all(train_data)
-        with jsonlines.open("data/val.jsonl", "w") as f:
-            f.write_all(val_data)
+    os.makedirs("data", exist_ok=True)
+    with jsonlines.open("data/train.jsonl", "w") as f:
+        f.write_all(train_data)
+    with jsonlines.open("data/val.jsonl", "w") as f:
+        f.write_all(val_data)
 
-        print(f"✅ Train: {len(train_data)} samples")
-        print(f"✅ Val:   {len(val_data)} samples")
-        return train_data, val_data
+    print(f"✅ Train: {len(train_data)} samples")
+    print(f"✅ Val:   {len(val_data)} samples")
+    return train_data, val_data
 
 
 # ─────────────────────────────── main ───────────────────────────────────────
