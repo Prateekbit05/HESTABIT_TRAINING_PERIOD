@@ -161,3 +161,4 @@ pyyaml>=6.0
 - **SHAP `TreeExplainer`** — computes exact (not approximate) Shapley values for tree models
 - **100-sample SHAP limit** — TreeExplainer is O(n × features); sampling keeps runtime practical
 - **`isinstance(shap_values, list)` check** — safely handles binary (`list[2]`) and multi-class SHAP output formats
+
