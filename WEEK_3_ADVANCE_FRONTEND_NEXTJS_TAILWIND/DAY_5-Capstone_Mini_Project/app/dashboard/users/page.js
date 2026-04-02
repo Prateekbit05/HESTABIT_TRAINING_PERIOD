@@ -174,3 +174,5 @@ export default function UsersPage() {
     </div>
   );
 }
+
+// Users page: Next.js users listing page with mocked data table and responsive TailwindCSS layout
