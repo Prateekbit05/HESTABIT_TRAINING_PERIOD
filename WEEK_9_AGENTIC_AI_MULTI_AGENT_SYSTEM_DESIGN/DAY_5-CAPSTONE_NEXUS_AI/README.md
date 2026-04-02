@@ -320,3 +320,4 @@ Trace file structure:
 ![Trace Log](Screenshots/trace_log.png)
 
 ---
+
