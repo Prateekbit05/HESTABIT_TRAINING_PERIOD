@@ -81,3 +81,4 @@ DAY_2-Tailwind Advanced_AND_Component Library/
 - **Tailwind class composition:** Using template literals to conditionally apply Tailwind classes based on props
 - **Component reuse:** Day 1's Navbar and Sidebar plugged in seamlessly as the layout shell
 
+
