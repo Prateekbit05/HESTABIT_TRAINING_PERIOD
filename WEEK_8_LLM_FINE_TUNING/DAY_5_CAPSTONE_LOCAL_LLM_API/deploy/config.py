@@ -165,3 +165,4 @@ if __name__ == "__main__":
         print(f"    Weaknesses: {info['weaknesses']}")
         print(f"    Desc:       {info['description']}")
     print(f"\n{'='*60}")
+# Config: inference server configuration with model path sampling params and logging settings
