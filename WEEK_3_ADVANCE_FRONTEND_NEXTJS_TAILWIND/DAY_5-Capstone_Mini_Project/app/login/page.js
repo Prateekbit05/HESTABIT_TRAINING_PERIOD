@@ -86,3 +86,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+// Login page: static Next.js login form with TailwindCSS responsive design and client component
