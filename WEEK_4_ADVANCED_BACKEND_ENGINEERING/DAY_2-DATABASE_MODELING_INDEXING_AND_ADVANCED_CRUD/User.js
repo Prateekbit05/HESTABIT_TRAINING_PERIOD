@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+// Fixed: removed unnecessary escape characters \- in character classes
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const userSchema = new mongoose.Schema(
   {
@@ -27,8 +28,8 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  // parseInt before || so a set env var isn't passed as a raw string to bcrypt
-  const saltRounds = parseInt(process.env.BCRYPT_SALT) || 10;
+  // Fixed: Number.parseInt instead of parseInt
+  const saltRounds = Number.parseInt(process.env.BCRYPT_SALT) || 10;
   this.password = await bcrypt.hash(this.password, saltRounds);
   next();
 });
