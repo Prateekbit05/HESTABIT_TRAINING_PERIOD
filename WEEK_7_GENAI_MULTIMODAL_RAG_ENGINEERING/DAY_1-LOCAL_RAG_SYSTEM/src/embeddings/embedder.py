@@ -118,3 +118,4 @@ if __name__ == "__main__":
     
     print(f"\n✅ Save/Load test successful")
     print(f"   Embeddings match: {np.allclose(embeddings, loaded_emb)}")
+# Embedder: generates local dense embeddings using BGE/GTE models for FAISS vector indexing
