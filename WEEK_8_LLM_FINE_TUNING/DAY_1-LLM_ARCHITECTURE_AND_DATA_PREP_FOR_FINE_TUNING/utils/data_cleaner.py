@@ -175,7 +175,7 @@ class InstructionDatasetBuilder:
         print("\n💾 Saving datasets...")
 
         # Shuffle dataset before splitting
-        # Using random is safe here (non-cryptographic use like ML dataset shuffling)
+        # Using random is safe here for ML dataset shuffling (non-cryptographic use)
         random.seed(42)
         random.shuffle(self.instructions)
 
