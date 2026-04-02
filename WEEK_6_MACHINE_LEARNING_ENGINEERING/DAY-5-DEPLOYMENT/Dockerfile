@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy Python packages
+# Copy Python packages from builder
 COPY --from=builder /install /usr/local
 
 # Copy application code
@@ -39,10 +39,16 @@ COPY scripts/ ./scripts/
 COPY models/ ./models/
 COPY .env.example .env.example
 
-# Create directories with proper permissions (as root)
+# ── Create non-root user ──────────────────────────────────────────────────────
+RUN groupadd --gid 1001 appgroup && \
+    useradd --uid 1001 --gid appgroup --no-create-home appuser
+
+# Create dirs and give ownership to appuser (not 777)
 RUN mkdir -p logs models/v1 && \
-    chmod -R 777 logs && \
-    chmod -R 755 models
+    chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
 
 EXPOSE 8000
 
@@ -50,10 +56,11 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Start command (single worker to avoid permission issues)
+# Start command
 CMD ["uvicorn", "deployment.api:app", \
      "--host", "0.0.0.0", \
      "--port", "8000", \
      "--workers", "1", \
      "--log-level", "info"]
-# Dockerfile: containerized ML API with FastAPI and model artifact for production deployment
+
+# Dockerfile: containerized ML API with FastAPI, non-root user, and secure permissions
