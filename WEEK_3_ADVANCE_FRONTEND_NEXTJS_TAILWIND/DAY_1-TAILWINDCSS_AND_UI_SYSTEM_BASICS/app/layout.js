@@ -79,3 +79,5 @@ export default function RootLayout({ children }) {
   );
 }
 // Root layout: Next.js app layout with TailwindCSS Navbar and Sidebar for dashboard skeleton
+
+// Root layout: Next.js app layout with TailwindCSS Navbar and Sidebar for dashboard skeleton
