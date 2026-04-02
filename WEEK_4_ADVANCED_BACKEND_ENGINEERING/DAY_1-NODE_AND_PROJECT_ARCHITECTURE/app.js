@@ -8,3 +8,4 @@ async function createApp() {
 }
 
 module.exports = createApp;
+// Entry point: initializes Express app with loaders and middleware
