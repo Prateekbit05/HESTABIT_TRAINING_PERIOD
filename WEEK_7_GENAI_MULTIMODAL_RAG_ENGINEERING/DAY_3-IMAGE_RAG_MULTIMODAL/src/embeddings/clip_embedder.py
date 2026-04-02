@@ -206,3 +206,4 @@ if __name__ == "__main__":
     else:
         print(f"\n⚠️  No images found in {image_dir}")
         print("   Text embedding test passed — CLIP is working correctly.\n")
+# CLIP embedder: generates vision and text embeddings for cross-modal image search alignment
