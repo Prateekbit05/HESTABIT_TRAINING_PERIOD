@@ -658,3 +658,4 @@ RAG systems go stale when the underlying documents change. Production pipelines 
 | **Token** | Approximate unit of text processed by LLMs. ~1 token ≈ 0.75 English words |
 | **Context Recall** | Retrieval metric: fraction of relevant chunks that were actually retrieved |
 | **Context Precision** | Retrieval metric: fraction of retrieved chunks that were actually relevant |
+
