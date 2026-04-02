@@ -69,3 +69,4 @@ def generate_request_id() -> str:
 
 
 logger = setup_logger()
+# Logger: structured request logging with correlation IDs for production LLM API tracing
