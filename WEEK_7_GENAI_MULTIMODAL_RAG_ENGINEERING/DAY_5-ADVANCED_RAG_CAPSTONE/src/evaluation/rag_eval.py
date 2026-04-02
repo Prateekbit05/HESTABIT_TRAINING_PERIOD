@@ -384,3 +384,4 @@ if __name__ == "__main__":
             data="count: 8"
         )
     ))
+# RAG evaluator: faithfulness scoring hallucination detection and confidence scoring for RAG responses
