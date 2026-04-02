@@ -88,3 +88,4 @@ export default function Navbar() {
     </nav>
   );
 }
+// Navbar: TailwindCSS responsive navigation bar component with custom theme configuration
