@@ -214,3 +214,5 @@ if __name__ == "__main__":
     ]
     
     pipeline.batch_process(questions)
+
+# SQL pipeline: end-to-end Text to SQL to Answer orchestration with validation and summarization
