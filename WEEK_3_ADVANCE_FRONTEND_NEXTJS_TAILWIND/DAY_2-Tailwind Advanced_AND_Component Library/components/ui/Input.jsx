@@ -17,3 +17,4 @@ export default function Input({ type = 'text', placeholder, className = '', icon
     </div>
   );
 }
+// Input: reusable TailwindCSS input component with validation states label and helper text support
