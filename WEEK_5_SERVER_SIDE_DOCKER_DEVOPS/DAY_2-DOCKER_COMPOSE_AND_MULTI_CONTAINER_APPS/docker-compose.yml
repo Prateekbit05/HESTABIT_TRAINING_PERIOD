@@ -35,3 +35,5 @@ services:
       - backend
     stdin_open: true
     tty: true
+
+# docker-compose: multi-container app with Node.js MongoDB and Redis services
