@@ -184,3 +184,4 @@ IMPORTANT RULES:
             "memory_window": self.memory_window,
             "memory_count":  len(self.get_memory()),
         }
+# Summarizer agent: AutoGen-based agent that receives research output and produces concise structured summaries
