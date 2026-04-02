@@ -53,21 +53,21 @@ class InstructionDatasetBuilder:
         samples = []
 
         question_starters = [
-            ("What is",          "is"),
-            ("Can you tell me",  "is"),
-            ("I need to know",   "is"),
-            ("Please provide",   "is"),
-            ("Could you share",  "is"),
-            ("Who is",           "is"),
-            ("Where is",         "is located in"),
-            ("How can I contact","can be contacted at"),
+            ("What is",           "is"),
+            ("Can you tell me",   "is"),
+            ("I need to know",    "is"),
+            ("Please provide",    "is"),
+            ("Could you share",   "is"),
+            ("Who is",            "is"),
+            ("Where is",          "is located in"),
+            ("How can I contact", "can be contacted at"),
             ("Which company does","works for"),
-            ("Do you have",      "Yes, it is"),
+            ("Do you have",       "Yes, it is"),
         ]
 
         for _ in tqdm(range(n_samples)):
-            row  = self._sample_row()
-            cols = row.index.tolist()
+            row      = self._sample_row()
+            cols     = row.index.tolist()
             name_col = self._col(cols, "name") or cols[0]
             qa_type  = secrets.choice(["email", "phone", "location",
                                         "company", "age", "job"])
@@ -179,10 +179,8 @@ class InstructionDatasetBuilder:
         print("\n🧹 Cleaning dataset...")
         initial_count = len(self.instructions)
 
-        # Drop empty outputs
         self.instructions = [s for s in self.instructions if s["output"].strip()]
 
-        # Deduplicate
         seen, cleaned = set(), []
         for sample in self.instructions:
             key = (sample["instruction"], sample["output"])
@@ -198,10 +196,10 @@ class InstructionDatasetBuilder:
     def save_datasets(self, train_ratio: float = 0.8):
         print("\n💾 Saving datasets...")
 
-        # Deterministic seed is intentional — ensures reproducible train/val
-        # splits across runs. secrets.SystemRandom is NOT used here because
-        # seeding is required for reproducibility; this is not a security context.
-        rng = random.Random(42)
+        # nosec B311 - random.Random is intentional: fixed seed (42) guarantees
+        # reproducible train/val splits across runs. No security context here —
+        # shuffle order is not sensitive and does not need to be unpredictable.
+        rng = random.Random(42)  # nosec
         rng.shuffle(self.instructions)
 
         split_idx  = int(len(self.instructions) * train_ratio)
