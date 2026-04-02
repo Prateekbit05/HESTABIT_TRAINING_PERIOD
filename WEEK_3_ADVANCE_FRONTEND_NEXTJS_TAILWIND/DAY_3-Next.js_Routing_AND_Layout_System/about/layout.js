@@ -207,3 +207,4 @@ export default function AboutPage() {
     </div>
   );
 }
+// About layout: Next.js nested layout for about section with shared navigation
