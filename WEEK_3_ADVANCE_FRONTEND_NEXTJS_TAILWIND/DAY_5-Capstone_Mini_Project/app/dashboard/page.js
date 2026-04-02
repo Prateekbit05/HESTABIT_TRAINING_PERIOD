@@ -282,3 +282,4 @@ export default function Dashboard() {
     </div>
   );
 }
+// Dashboard page: Next.js dashboard with cards widgets and mocked data using reusable UI components
