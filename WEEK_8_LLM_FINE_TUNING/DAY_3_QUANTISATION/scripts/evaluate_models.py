@@ -521,3 +521,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+# Model evaluator: benchmarks FP16 INT8 INT4 and GGUF models measuring size speed and output quality
