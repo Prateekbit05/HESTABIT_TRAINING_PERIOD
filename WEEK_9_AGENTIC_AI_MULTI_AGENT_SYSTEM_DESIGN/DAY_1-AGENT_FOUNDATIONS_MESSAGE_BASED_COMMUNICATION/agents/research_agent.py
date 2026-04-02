@@ -200,3 +200,4 @@ IMPORTANT RULES:
             "memory_window": self.memory_window,
             "memory_count":  len(self.get_memory()),
         }
+# Research agent: AutoGen-based agent with unique role system prompt and 10-message memory window for information gathering
