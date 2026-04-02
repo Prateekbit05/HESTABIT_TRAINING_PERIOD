@@ -159,3 +159,5 @@ export default function Home() {
 }
 
 // Landing page: responsive SaaS landing page with hero features testimonials and footer using next/image
+
+// Landing page: responsive SaaS landing page with hero features testimonials and footer using next/image
