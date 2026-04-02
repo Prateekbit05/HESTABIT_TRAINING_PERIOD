@@ -89,3 +89,5 @@ export default function Navbar() {
   );
 }
 // Navbar: TailwindCSS responsive navigation bar component with custom theme configuration
+
+// Navbar: TailwindCSS responsive navigation bar component with custom theme configuration
