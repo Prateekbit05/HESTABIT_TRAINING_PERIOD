@@ -162,3 +162,4 @@ def run_ingestion_pipeline(no_eval=False):
         import traceback
         traceback.print_exc()
         return False
+# Ingest pipeline: loads PDF TXT CSV DOCX cleans text and chunks into 500-800 token segments with metadata
