@@ -35,3 +35,4 @@ userSchema.methods.comparePassword = async function (password) {
 };
 
 module.exports = mongoose.model('User', userSchema);
+// User model: Mongoose schema with indexes for email and role-based queries
