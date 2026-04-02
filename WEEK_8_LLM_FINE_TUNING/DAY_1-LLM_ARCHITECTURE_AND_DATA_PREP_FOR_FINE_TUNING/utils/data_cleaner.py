@@ -173,9 +173,7 @@ class InstructionDatasetBuilder:
     # ========== SAVE ==========
     def save_datasets(self, train_ratio=0.8):
         print("\n💾 Saving datasets...")
-
-        # Shuffle dataset before splitting
-        # Using random is safe here for ML dataset shuffling (non-cryptographic use)
+        
         random.seed(42)
         random.shuffle(self.instructions)
 
