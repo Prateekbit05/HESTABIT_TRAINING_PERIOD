@@ -979,3 +979,4 @@ if __name__ == "__main__":
     
     print("\n✅ Day 1 Pipeline Completed Successfully!")
     print(f"   Results saved to: src/data/processed/pipeline_results.json")
+# Data pipeline: end-to-end ingestion cleaning and preprocessing for ML training data
