@@ -125,7 +125,8 @@ The goal of this week is to transition from a "coder" to an **engineer**. You wi
 ## Completion Criteria
 * [ ] All deliverables submitted in the correct directory.
 
-WEEK_1_FOLDER_STRUCTURE:-
+```
+WEEK_1_ENGINEERING_MINDSET_BOOTCAMP (WEEK-1-->WHOLE FOLDER STRUCTURE)
 │
 ├── .gitignore
 ├── .gitmodules
@@ -232,4 +233,5 @@ WEEK_1_FOLDER_STRUCTURE:-
         ├── cron_running_service.png
         ├── crontab_running.png
         ├── artifacts_cron.png
-        └── verification_cron_job.png* 
+        └── verification_cron_job.png
+```
