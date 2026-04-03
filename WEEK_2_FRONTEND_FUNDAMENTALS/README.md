@@ -15,44 +15,51 @@ This week focused on mastering the core frontend technologies: HTML5, CSS3, and 
 ---
 
 ## Project Structure
-```
-WEEK_2-FRONTEND_FUNDAMENTALS_HTML_CSS_JAVASCRIPT/
+# WEEK_2_FRONTEND_FUNDAMENTALS
+
+```│
+├── README.md
 │
 ├── DAY_1-HTML5_SEMANTIC-LAYOUT/
-│   ├── blog.html              # Semantic HTML blog page
-│   └── README.md              # Day 1 learnings
+│   ├── blog.html
+│   ├── blog.html.png
+│   ├── README.md
+│   └── Screenshots/
+│       └── blog.html.png
 │
 ├── DAY_2-CSS_LAYOUT_MASTERY/
-│   ├── index.html             # UI replication exercise
-│   ├── style.css              # Flexbox/Grid styling
-│   ├── style.css1             # Additional styles
+│   ├── index.html
+│   ├── style.css
+│   ├── style.css1
+│   ├── README.md
 │   └── screenshots/
-│       ├── DESKTOP_UI.png     # Desktop view
-│       ├── MOBILE_UI.png      # Mobile view
-│       └── RESPONSIVE_UI.png  # Responsive design
+│       ├── DESKTOP_UI.png
+│       ├── MOBILE_UI.png
+│       └── RESPONSIVE_UI.png
 │
 ├── DAY_3-JS_DOM_MANIPULATION/
-│   ├── index.html             # Interactive FAQ & counter
-│   ├── script.js              # DOM manipulation logic
-│   ├── style.css              # Component styling
+│   ├── index.html
+│   ├── script.js
+│   ├── style.css
+│   ├── README.md
 │   └── screenshots/
-│       ├── closed_state.png
 │       ├── opened_state.png
-│       ├── counter(arrow_down).png
-│       ├── counter(arrow_up).png
-│       ├── counter_dropdown_and_keyevents.png
+│       ├── closed_state.png
 │       ├── dropdown_opened_state.png
-│       └── dropdown_opened_state.png
+│       ├── counter(arrow_up).png
+│       ├── counter(arrow_down).png
+│       └── counter_dropdown_and_keyevents.png
 │
 ├── DAY_4-JS_UTILS_LOCALSTORAGE/
+│   ├── README.md
 │   └── todo-app/
-│       ├── index.html         # Todo app HTML
+│       ├── index.html
 │       ├── css/
-│       │   └── style.css      # Todo styling
+│       │   └── style.css
 │       ├── js/
-│       │   └── app.js         # LocalStorage logic
+│       │   └── app.js
 │       ├── logs/
-│       │   └── errors.md      # Error tracking
+│       │   └── errors.md
 │       └── Screenshots/
 │           ├── ADD_TODO/
 │           │   ├── debugging_paused.png
@@ -60,35 +67,39 @@ WEEK_2-FRONTEND_FUNDAMENTALS_HTML_CSS_JAVASCRIPT/
 │           │   ├── step_out_function.png
 │           │   ├── step_over_function.png
 │           │   └── text_added_into_function.png
+│           ├── EDIT_TODO/
+│           │   ├── debugging_paused.png
+│           │   ├── edit_task_name.png
+│           │   ├── step_in.png
+│           │   ├── step_out.png
+│           │   ├── step_over.png
+│           │   └── task_edit_prompt.png
 │           ├── COMPLETION_TODO/
 │           │   ├── Debugging_paused.png
 │           │   ├── step_in_function.png
 │           │   ├── step_out_function.png
 │           │   ├── step_over_function.png
 │           │   └── task_complete_todo.png
-│           ├── DELETE_TODO/
-│           │   ├── deletion_debugging_paused.png
-│           │   ├── event_deletion.png
-│           │   ├── step_into_function.png
-│           │   ├── step_out_function.png
-│           │   ├── step_over_function.png
-│           │   └── task_deleted.png
-│           └── EDIT_TODO/
-│               ├── debugging_paused.png
-│               ├── edit_task_name.png
-│               ├── step_in.png
-│               ├── step_out.png
-│               ├── step_over.png
-│               └── task_edit_prompt.png
+│           └── DELETE_TODO/
+│               ├── deletion_debugging_paused.png
+│               ├── event_deletion.png
+│               ├── step_into_function.png
+│               ├── step_out_function.png
+│               ├── step_over_function.png
+│               └── task_deleted.png
 │
 └── DAY_5-CAPSTONE_UI_AND_JS_PROJECT/
-    ├── index.html             # Main landing page
-    ├── products.html          # E-commerce product listing
+    ├── index.html
+    ├── products.html
+    ├── README.md
     ├── css/
-    │   └── style.css          # Main stylesheet
+    │   └── style.css
     ├── js/
-    │   └── products.js        # Product fetching & filtering
+    │   └── products.js
     └── screenshots/
+        ├── E-commerce_UI.png
+        ├── E-commerce_Dark_Mode.png
+        └── Categories_ui.png
 ```
 
 ---
