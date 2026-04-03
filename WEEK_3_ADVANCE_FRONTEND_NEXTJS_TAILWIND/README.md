@@ -48,6 +48,101 @@ Train interns to build modern, production-grade frontends using:
 | Reusable Component Library | Create ui/ library folder with export index |
 | SEO | Metadata config + Image optimization |
 
+```
+WEEK_3_ADVANCE_FRONTEND_NEXTJS_TAILWIND (WEEK-3-->WHOLE FOLDER STRUCTURE)
+│
+├── README.md
+│
+├── DAY_1-TAILWINDCSS_AND_UI_SYSTEM_BASICS/
+│   ├── README.md
+│   ├── Dashboard_Layout_skeleton.png
+│   ├── app/
+│   │   └── layout.js
+│   └── components/
+│       └── ui/
+│           ├── Navbar.jsx
+│           └── Sidebar.jsx
+│
+├── DAY_2-TAILWIND_ADVANCED_AND_COMPONENT_LIBRARY/
+│   ├── README.md
+│   ├── UI-COMPONENT-DOCS.md
+│   ├── components/
+│   │   └── ui/
+│   │       ├── Button.jsx
+│   │       ├── Card.jsx
+│   │       ├── Modal.jsx
+│   │       ├── Badge.jsx
+│   │       └── Input.jsx
+│   └── screenshots/
+│       └── ui_components.png
+│
+├── DAY_3-NEXTJS_ROUTING_AND_LAYOUT_SYSTEM/
+│   ├── README.md
+│   ├── about/
+│   │   └── layout.js
+│   ├── dashboard/
+│   │   └── profile/
+│   │       └── page.js
+│   └── screenshots/
+│       └── ui_components.png
+│
+├── DAY_4-DYNAMIC_UI_AND_IMAGE_OPTIMIZATION/
+│   ├── README.md
+│   ├── app/
+│   │   ├── layout.js
+│   │   ├── page.js
+│   │   ├── globals.css
+│   │   ├── favicon.ico
+│   │   ├── about/
+│   │   │   └── layout.js
+│   │   ├── login/
+│   │   │   └── page.js
+│   │   ├── interface/
+│   │   │   ├── layouts/
+│   │   │   │   └── page.js
+│   │   │   └── pages/
+│   │   │       └── page.js
+│   │   └── dashboard/
+│   │       ├── layout.js
+│   │       ├── page.js
+│   │       ├── DashboardClientLayout.js
+│   │       ├── profile/
+│   │       │   ├── page.js
+│   │       │   └── edit/
+│   │       │       └── page.js
+│   │       ├── users/
+│   │       │   └── page.js
+│   │       └── stats/
+│   │           ├── primary/
+│   │           │   └── page.js
+│   │           ├── warning/
+│   │           │   └── page.js
+│   │           ├── success/
+│   │           │   └── page.js
+│   │           └── danger/
+│   │               └── page.js
+│   └── screenshots/
+│       ├── landing_page.png
+│       └── landing_page_1.png
+│
+└── DAY_5-CAPSTONE_MINI_PROJECT/
+    ├── README.md
+    ├── app/
+    │   ├── login/
+    │   │   └── page.js
+    │   └── dashboard/
+    │       ├── page.js
+    │       ├── profile/
+    │       │   └── page.js
+    │       └── users/
+    │           └── page.js
+    └── screenshots/
+        ├── login.png
+        ├── dashboard.png
+        ├── users.png
+        └── profile.png
+```
+ 
 ## Daily Breakdown
 
 ### Day 1: TailwindCSS + UI System Basics
